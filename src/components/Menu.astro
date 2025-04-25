@@ -1,0 +1,172 @@
+---
+---
+
+<div class="bg-slate-200">
+    <div id="menu" class="bg-slate-200">
+        <div class="w-0 h-0 mx-auto border-l-[30px] border-r-[30px] border-t-[30px] border-l-transparent border-r-transparent border-t-slate-900"></div>
+    </div>
+    <div id="dishes" class="px-0 md:px-10 lg:px-32 xl:px-32 2xl:px-96">
+        <div class="grid grid-cols-2 gap-5 p-6 lg:grid-cols-4 md:px-32 lg:p-4 xl:p-10">
+            <button>
+                <img id="empanadas-btn" class="border-4 border-slate-100 shadow-black shadow-sm rounded-lg md:rounded-2xl" src="imgs/menu/empanadas.jpg" alt="Foto de empanadas" loading="lazy">
+            </button>
+            <button>
+                <img id="milanesa-btn" class="border-4 border-slate-100 shadow-black shadow-sm rounded-lg md:rounded-2xl opacity-50" src="imgs/menu/milanesa.jpg" alt="Foto de milanesa" loading="lazy"> 
+            </button>
+            <button>
+                <img id="sorrentinos-btn" class="border-4 border-slate-100 shadow-black shadow-sm rounded-lg md:rounded-2xl opacity-50" src="imgs/menu/sorrentinos.jpg" alt="Foto de sorrentinos" loading="lazy">
+            </button>
+            <button>
+                <img id="flan-btn" class="border-4 border-slate-100 shadow-black shadow-sm rounded-lg md:rounded-2xl opacity-50" src="imgs/menu/flan.jpg" alt="Foto de flan" loading="lazy">
+            </button>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:px-10 lg:px-28 xl:px-60 2xl:px-96 lg:pt-4 xl:pt-0">
+        <div id="dish" class="grid grid-cols-1">
+            <div id="dish-info" class="flex flex-col justify-center align-middle px-10 md:px-20">
+                <h3 id="dish-title" class="font-signika text-4xl md:text-5xl lg:text-4xl xl:text-5xl">Empanadas</h3>
+                <p id="dish-description" class="font-rubik text-justify text-base pt-2 md:text-lg lg:text-base xl:text-lg">Las empanadas argentinas son una especialidad culinaria icónica, consistentes en una masa fina rellena con diversos ingredientes, que se cocina al horno o frita. Suelen comerse como entrada. Pueden ser de: carne, pollo, jamón y queso, humita, queso y cebolla, o verdura y queso.</p>
+            </div>
+            <!-- <figure class="px-20">
+                <img id="dish-img" class="shadow-black shadow-md" src="imgs/menu/empanadas.jpg" alt="Foto de comida" loading="lazy">
+            </figure> -->
+        </div>
+        <div class="flex justify-center py-6 md:py-6 lg:pb-4 lg:pt-8 xl:pb-10 xl:pt-10">
+            <a href="imgs/menu/menu.jpg" class="font-rubik text-base text-slate-700 bg-slate-200 border border-slate-700 rounded-md py-2 px-4 hover:text-slate-200 hover:bg-slate-700 transition duration-250 md:text-lg xl:text-xl" target="_blank">VER MENÚ</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    button img {
+        transition: all 0.25s;
+    }
+    button img:hover {
+        transform: scale(1.02); 
+    }
+    figure {
+        display: flex;
+        justify-self: end;
+    }
+</style>
+
+<script>
+    interface Dish {
+        title: string;
+        description: string;
+        img: string;
+    }
+
+    const empanada: Dish = {
+        title: "Empanadas",
+        description: "Las empanadas argentinas son una especialidad culinaria icónica, consistentes en una masa fina rellena con diversos ingredientes, que se cocina al horno o frita. Suelen comerse como entrada. Pueden ser de: carne, pollo, jamón y queso, humita, queso y cebolla, o verdura y queso.",
+        img: "imgs/menu/empanadas.jpg"
+    }
+    const milanesa: Dish = {
+        title: "Milanesa",
+        description: "Las milanesas argentinas son un plato emblemático de la gastronomía del país, caracterizado por una fina rebanada de carne (generalmente de res o pollo) empanada y frita o cocida al horno. Suelen estar acompañadas por una guarnición. Recomendamos probar nuestras famosas milanesas napolitanas (c/ salsa de tomate, jamón, queso y orégano).",
+        img: "imgs/menu/milanesa.jpg"
+    }
+    const sorrentino: Dish = {
+        title: "Sorrentinos",
+        description: "Los sorrentinos argentinos son una pasta rellena en forma redonda, similar a los ravioles pero más grandes y con mayor capacidad para contener relleno. Su origen no es italiano, sino una creación local inspirada en la tradición italiana. Pueden ser de: jamón y queso, ricota y espinaca, calabaza y queso, o pollo y verdura.",
+        img: "imgs/menu/sorrentinos.jpg"
+    }
+    const flan: Dish = {
+        title: "Flan",
+        description: "El flan argentino es uno de los postres más tradicionales y queridos en el país. Se trata de un postre cremoso y firme elaborado principalmente con huevos, leche y azúcar, que se cocina al baño maría y se sirve acompañado de otros clásicos como dulce de leche o crema batida.",
+        img: "imgs/menu/flan.jpg"
+    }
+
+    const empanadas_btn = document.getElementById("empanadas-btn");
+    const milanesa_btn = document.getElementById("milanesa-btn");
+    const sorrentinos_btn = document.getElementById("sorrentinos-btn");
+    const flan_btn = document.getElementById("flan-btn");
+
+    const dish_title = document.getElementById("dish-title");
+    const dish_description = document.getElementById("dish-description");
+    const dish_img = document.getElementById("dish-img") as HTMLImageElement | null;
+
+    empanadas_btn?.addEventListener("click", () => {showDish("empanadas");});
+    milanesa_btn?.addEventListener("click", () => {showDish("milanesa");});
+    sorrentinos_btn?.addEventListener("click", () => {showDish("sorrentinos");});
+    flan_btn?.addEventListener("click", () => {showDish("flan");});
+
+    function changeDishInfo(dish: Dish): void {
+        if (dish_title) dish_title.textContent = dish.title;
+        if (dish_description) dish_description.textContent = dish.description;
+        if (dish_img) dish_img.src = dish.img;
+    }
+
+    function showDish(dishSelected: string) {
+        switch (dishSelected) {
+            case "empanadas":
+                empanadas_btn?.classList.remove("opacity-50", "hover:opacity-75");
+                milanesa_btn?.classList.add("opacity-50", "hover:opacity-75");
+                sorrentinos_btn?.classList.add("opacity-50", "hover:opacity-75");
+                flan_btn?.classList.add("opacity-50", "hover:opacity-75");
+                changeDishInfo(empanada);
+                break;
+            case "milanesa":
+                empanadas_btn?.classList.add("opacity-50", "hover:opacity-75");
+                milanesa_btn?.classList.remove("opacity-50", "hover:opacity-75");
+                sorrentinos_btn?.classList.add("opacity-50", "hover:opacity-75");
+                flan_btn?.classList.add("opacity-50", "hover:opacity-75");
+                changeDishInfo(milanesa);
+                break;
+            case "sorrentinos":
+                empanadas_btn?.classList.add("opacity-50", "hover:opacity-75");
+                milanesa_btn?.classList.add("opacity-50", "hover:opacity-75");
+                sorrentinos_btn?.classList.remove("opacity-50", "hover:opacity-75");
+                flan_btn?.classList.add("opacity-50", "hover:opacity-75");
+                changeDishInfo(sorrentino);
+                break;
+            case "flan":
+                empanadas_btn?.classList.add("opacity-50", "hover:opacity-75");
+                milanesa_btn?.classList.add("opacity-50", "hover:opacity-75");
+                sorrentinos_btn?.classList.add("opacity-50", "hover:opacity-75");
+                flan_btn?.classList.remove("opacity-50", "hover:opacity-75");
+                changeDishInfo(flan);
+                break;
+        }
+    }
+
+    // animaciones GSAP
+    import { gsap } from "gsap";
+    import ScrollTrigger from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from("#dishes", {
+        y: 100,
+        opacity: 0,
+        duration: 2,
+        ease: "power4",
+        scrollTrigger: {
+            trigger: "#dishes",
+            start: "top 90%",
+        },
+    });
+
+    gsap.from("#dish-info", {
+        opacity: 0,
+        duration: 4,
+        ease: "power4",
+        scrollTrigger: {
+            trigger: "#dish-info",
+            start: "top 80%",
+        },
+    });
+
+    // gsap.from("#dish-img", {
+    //     rotate: 0,
+    //     opacity: 0,
+    //     x: -100,
+    //     duration: 3,
+    //     ease: "power4",
+    //     scrollTrigger: {
+    //         trigger: "#dish-img",
+    //         start: "top 70%",
+    //     },
+    // });
+</script>

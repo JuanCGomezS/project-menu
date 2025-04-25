@@ -1,0 +1,38 @@
+---
+---
+
+<div class="hero min-h-[88vh] px-10 flex flex-col items-center justify-center">
+    <h1 id="hero-h1" class="font-signika text-center text-white text-6xl md:text-8xl lg:text-9xl">PALADAR</h1>
+    <p id="hero-p" class="font-ubuntu text-center text-white text-lg md:text-xl lg:text-2xl">Restaurante argentino</p>
+    <div id="hero-a" class="flex justify-center">
+        <a class="font-rubik text-sm text-slate-200 bg-slate-700 rounded-md py-2 px-4 mt-8 hover:bg-slate-600 hover:text-slate-200 transition duration-250 md:text-lg lg:text-xl" href="https://api.whatsapp.com/send?phone=5491123456789&text=Hola, me gustaría reservar una mesa para X personas, el día XX/XX/XXXX a las XX:XX." target="_blank">RESERVAR MESA</a>
+    </div>
+</div>
+
+<style>
+    .hero {
+        background-image: url("/bg-hero.jpg");
+        background-attachment: contain;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<script>
+    // animaciones GSAP
+    import { gsap } from "gsap";
+    import ScrollTrigger from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ids = ["#hero-h1", "#hero-p", "#hero-a"];
+
+    ids.forEach((id) => {
+        gsap.from(id, {
+            opacity: 0,
+            y: 40,
+            duration: 3,
+            ease: "power4",
+        });
+    });
+</script>
