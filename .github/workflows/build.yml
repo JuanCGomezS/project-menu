@@ -14,11 +14,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -28,13 +28,10 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
-      - name: Upload build output
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          path: ./dist
-
-      - name: Fix missing upload-artifact action
-        uses: actions/upload-artifact@v3
+          path: dist/
 
   deploy:
     needs: build
@@ -45,4 +42,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
