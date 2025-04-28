@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/siteConfig';
 import '../global.css';
 ---
 
@@ -8,17 +9,17 @@ import '../global.css';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Restaurante de comida argentina, ubicado en España. ¡Reserva tu mesa hoy y disfruta de los mejores platos argentinos!">
-    <meta name="keywords" content="paladar, restaurante, reserva, comida, cultura, argentina, carne, pasta, empanadas, milanesa, sorrentinos, flan">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Paladar Restaurante">
-    <meta property="og:description" content="Restaurante de comida argentina, ubicado en España. ¡Reserva tu mesa hoy y disfruta de los mejores platos argentinos!">
-    <meta property="og:image" content="https://paladar-restaurante.netlify.app/imgs/logo.png">
-    <meta property="og:url" content="https://paladar-restaurante.netlify.app/">  
-    <link rel="icon" type="image/png" href="/imgs/logo.png" />
-    <title>Paladar Restaurante</title>
+    <meta name="description" content={siteConfig.description} />
+    <meta name="keywords" content={siteConfig.keywords} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={siteConfig.title} />
+    <meta property="og:description" content={siteConfig.description} />
+    <meta property="og:image" content={siteConfig.ogImage} />
+    <meta property="og:url" content={siteConfig.ogUrl} />
+    <link rel="icon" type="image/png" href={siteConfig.favicon} />
+    <title>{siteConfig.title}</title>
   </head>
-  
+
   <body>
     <Header />
     <slot />

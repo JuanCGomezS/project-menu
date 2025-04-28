@@ -1,132 +1,132 @@
 ---
-import Logo from "./Logo.astro";
+import Logo from './Logo.astro';
 ---
 
 <!-- Navbar -->
 <div class="justify-center align-middle gap-10 hidden lg:flex">
-    <a href="/">INICIO</a>
-    <a href="#aboutus">NOSOTROS</a>
+  <a href="/">INICIO</a>
+  <a href="#aboutus">NOSOTROS</a>
 </div>
 <div class="lg:mx-10">
-    <Logo size={64} />
+  <Logo size={64} />
 </div>
 <div class="justify-center align-middle gap-10 hidden lg:flex">
-    <a href="#menu">MENÚ</a>
-    <a href="#contact">CONTACTO</a>
+  <a href="#menu">MENÚ</a>
+  <a href="#contact">CONTACTO</a>
 </div>
 <!-- Navbar Mobile (Menú Hamburguesa) -->
 <div class="ms-auto lg:hidden">
-    <button id="burger-menu">
-        <img class="invert" src="/svg/burger-menu.svg" alt="Ícono del menú hamburguesa" width="32" height="32">
-    </button>
+  <button id="burger-menu">
+    <img class="invert" src="/svg/burger-menu.svg" alt="Ícono del menú hamburguesa" width="32" height="32" />
+  </button>
 </div>
 <div id="mobile-menu" class="flex lg:hidden">
-    <a href="/">INICIO</a>
-    <a href="#aboutus">NOSOTROS</a>
-    <a href="#menu">MENÚ</a>
-    <a href="#contact">CONTACTO</a>
+  <a href="/">INICIO</a>
+  <a href="#aboutus">NOSOTROS</a>
+  <a href="#menu">MENÚ</a>
+  <a href="#contact">CONTACTO</a>
 </div>
 
 <style>
-    a {
-        list-style: none;
-        font-family: 'Rubik', sans-serif;
-        color: white;
-    }
+  a {
+    list-style: none;
+    font-family: 'Rubik', sans-serif;
+    color: white;
+  }
 
-    a:hover {
-        text-decoration: underline;
-        color: rgb(225, 225, 225);
-    }
+  a:hover {
+    text-decoration: underline;
+    color: rgb(225, 225, 225);
+  }
 
-    #burger-menu {
-        padding: 4px;
-        border: 2px solid rgb(255, 255, 255, 0.1);
-        border-radius: 8px;
-        transition: all 0.25s;
-    }
+  #burger-menu {
+    padding: 4px;
+    border: 2px solid rgb(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.25s;
+  }
 
-    #burger-menu:focus {
-        border: 2px solid rgb(255, 255, 255, 0.7);
-        border-radius: 8px;
-    }
+  #burger-menu:focus {
+    border: 2px solid rgb(255, 255, 255, 0.7);
+    border-radius: 8px;
+  }
 
+  #mobile-menu {
+    position: absolute;
+    /* top: 100px; */
+    right: 0;
+    width: 100%;
+    /* height: 200px; */
+    padding-right: 35px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    background-color: rgb(30, 41, 59, 0.9);
+    gap: 1rem;
+    z-index: 1000;
+    overflow: hidden;
+  }
+
+  @media (max-width: 1023.98px) {
     #mobile-menu {
-        position: absolute;
-        /* top: 100px; */
-        right: 0;
-        width: 100%;
-        /* height: 200px; */
-        padding-right: 35px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: end;
-        background-color: rgb(30, 41, 59, 0.9);
-        gap: 1rem;
-        z-index: 1000;
-        overflow: hidden;
+      top: 95px;
     }
+  }
 
-    @media (max-width: 1023.98px) {
-        #mobile-menu {
-            top: 95px;
-        }
+  @media (max-width: 767.98px) {
+    #mobile-menu {
+      top: 79px;
     }
+  }
 
-    @media (max-width: 767.98px) {
-        #mobile-menu {
-            top: 79px;
-        }
+  @media (max-width: 425.98px) {
+    #mobile-menu {
+      top: 85px;
+      padding-right: 20px;
     }
-
-    @media (max-width: 425.98px) {
-        #mobile-menu {
-            top: 85px;
-            padding-right: 20px;
-        }
-    }
+  }
 </style>
 
 <script>
-    // animaciones GSAP
-    import { gsap } from "gsap";
-    import ScrollTrigger from "gsap/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger);
+  // animaciones GSAP
+  import { gsap } from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
 
-    const burgerMenu = document.getElementById("burger-menu");
-    const burgerMenuImg = burgerMenu?.firstElementChild as HTMLImageElement;
-    const mobileMenu = document.getElementById("mobile-menu");
+  const burgerMenu = document.getElementById('burger-menu');
+  const burgerMenuImg = burgerMenu?.firstElementChild as HTMLImageElement;
+  const mobileMenu = document.getElementById('mobile-menu');
 
-    let isOpen = false;
+  let isOpen = false;
 
-    // ocultar el menú al iniciar
-    gsap.set(mobileMenu, { height: 0, overflow: "hidden" });
+  // ocultar el menú al iniciar
+  gsap.set(mobileMenu, { height: 0, overflow: 'hidden' });
 
-    // alternar el menú
-    burgerMenu?.addEventListener("click", () => {
-        gsap.to(mobileMenu, {
-            height: isOpen ? 0 : "200px",
-            duration: 0.5,
-            ease: "power2.out",
-            onComplete: () => {
-                // ocultar el menú al cerrarlo
-                if (!isOpen) {
-                    mobileMenu?.classList.add("hidden");
-                    if (burgerMenuImg) {
-                        burgerMenuImg.src = "/svg/burger-menu.svg";
-                    }
-                }
-            },
-            onStart: () => {
-                // mostrar el menú al abrirlo
-                if (isOpen) {
-                    mobileMenu?.classList.remove("hidden");
-                    if (burgerMenuImg) {
-                        burgerMenuImg.src = "/svg/burger-menu-x.svg";
-                    }
-                }
-            },
-        });
-        isOpen = !isOpen;
+  // alternar el menú
+  burgerMenu?.addEventListener('click', () => {
+    gsap.to(mobileMenu, {
+      height: isOpen ? 0 : '200px',
+      duration: 0.5,
+      ease: 'power2.out',
+      onComplete: () => {
+        // ocultar el menú al cerrarlo
+        if (!isOpen) {
+          mobileMenu?.classList.add('hidden');
+          if (burgerMenuImg) {
+            burgerMenuImg.src = '/svg/burger-menu.svg';
+          }
+        }
+      },
+      onStart: () => {
+        // mostrar el menú al abrirlo
+        if (isOpen) {
+          mobileMenu?.classList.remove('hidden');
+          if (burgerMenuImg) {
+            burgerMenuImg.src = '/svg/burger-menu-x.svg';
+          }
+        }
+      },
     });
+    isOpen = !isOpen;
+  });
 </script>
