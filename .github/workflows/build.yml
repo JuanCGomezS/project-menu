@@ -33,6 +33,9 @@ jobs:
         with:
           path: ./dist
 
+      - name: Fix missing upload-artifact action
+        uses: actions/upload-artifact@v3
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
