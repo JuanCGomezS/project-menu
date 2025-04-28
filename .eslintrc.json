@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["astro", "prettier"],
+  "extends": ["eslint:recommended", "plugin:astro/recommended", "plugin:prettier/recommended"],
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "parser": "astro-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+      }
+    }
+  ],
+  "rules": {
+    "max-lines": ["warn", { "max": 200, "skipBlankLines": true, "skipComments": true }],
+    "max-len": ["warn", { "code": 120, "ignoreUrls": true }]
+  }
+}
