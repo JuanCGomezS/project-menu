@@ -1,12 +1,12 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 
 const isDev = import.meta.env.DEV;
-const base = isDev ? "/" : "/project-menu/";
+const base = isDev ? '/' : '/project-menu/';
 
 export default defineConfig({
   integrations: [tailwind()],
-  output: "static",
+  output: 'static',
   base,
 });

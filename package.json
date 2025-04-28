@@ -2,6 +2,7 @@
   "name": "project-menu",
   "type": "module",
   "version": "0.0.1",
+  "homepage": "https://juancgomezs.github.io/project-menu/",
   "scripts": {
     "dev": "npm run lint && astro dev",
     "build": "astro build",
